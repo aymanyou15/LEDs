@@ -1,0 +1,599 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"20 ./ecu_led.h
+[; ;./ecu_led.h: 20: typedef struct{
+[s S305 :4 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S305 . port_name pin led_status ]
+"11 application.c
+[; ;application.c: 11: led_t led1 = {.port_name = PORTC_INDEX, .pin = PIN0, .led_status = LED_OFF};
+[c E3027 0 1 2 3 4 .. ]
+[n E3027 . PORTA_INDEX PORTB_INDEX PORTC_INDEX PORTD_INDEX PORTE_INDEX  ]
+[c E3017 0 1 2 3 4 5 6 7 .. ]
+[n E3017 . PIN0 PIN1 PIN2 PIN3 PIN4 PIN5 PIN6 PIN7  ]
+[c E3069 0 1 .. ]
+[n E3069 . LED_OFF LED_ON  ]
+"20 ./ecu_button.h
+[; ;./ecu_button.h: 20: typedef struct{
+[s S306 :4 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S306 . port_name pin button_status ]
+"15 application.c
+[; ;application.c: 15: button_t btn2 = {.port_name = PORTD_INDEX, .pin = PIN1, .button_status = BUTTON_NOT_PRESSED};
+[c E3086 0 1 .. ]
+[n E3086 . BUTTON_NOT_PRESSED BUTTON_PRESSED  ]
+[p mainexit ]
+"22
+[; ;application.c: 22:     led_initialize(&led1);
+[c E3005 0 1 .. ]
+[n E3005 . R_NOK R_OK  ]
+"34 ./ecu_led.h
+[; ;./ecu_led.h: 34: ret_status led_initialize(led_t *led);
+[v _led_initialize `(E3005 ~T0 @X0 0 ef1`*S305 ]
+"27 ./ecu_button.h
+[; ;./ecu_button.h: 27: ret_status button_initialize(button_t *btn);
+[v _button_initialize `(E3005 ~T0 @X0 0 ef1`*S306 ]
+"28
+[; ;./ecu_button.h: 28: ret_status button_get_status(button_t *btn, button_status *btn_status);
+[v _button_get_status `(E3005 ~T0 @X0 0 ef2`*S306`*E3086 ]
+"42 ./ecu_led.h
+[; ;./ecu_led.h: 42: ret_status led_turn_on(led_t *led);
+[v _led_turn_on `(E3005 ~T0 @X0 0 ef1`*S305 ]
+[v F2991 `(v ~T0 @X0 1 tf1`ul ]
+"203 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
+[v __delay `JF2991 ~T0 @X0 0 e ]
+[p i __delay ]
+"50 ./ecu_led.h
+[; ;./ecu_led.h: 50: ret_status led_turn_off(led_t *led);
+[v _led_turn_off `(E3005 ~T0 @X0 0 ef1`*S305 ]
+"54 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\../../include/proc/pic18f46k20.h
+[; <" SSPMSK equ 0F77h ;# ">
+"124
+[; <" SLRCON equ 0F78h ;# ">
+"168
+[; <" CM2CON1 equ 0F79h ;# ">
+"207
+[; <" CM2CON0 equ 0F7Ah ;# ">
+"277
+[; <" CM1CON0 equ 0F7Bh ;# ">
+"347
+[; <" WPUB equ 0F7Ch ;# ">
+"409
+[; <" IOCB equ 0F7Dh ;# ">
+"448
+[; <" ANSEL equ 0F7Eh ;# ">
+"510
+[; <" ANSELH equ 0F7Fh ;# ">
+"554
+[; <" PORTA equ 0F80h ;# ">
+"790
+[; <" PORTB equ 0F81h ;# ">
+"998
+[; <" PORTC equ 0F82h ;# ">
+"1186
+[; <" PORTD equ 0F83h ;# ">
+"1328
+[; <" PORTE equ 0F84h ;# ">
+"1534
+[; <" LATA equ 0F89h ;# ">
+"1646
+[; <" LATB equ 0F8Ah ;# ">
+"1758
+[; <" LATC equ 0F8Bh ;# ">
+"1870
+[; <" LATD equ 0F8Ch ;# ">
+"1982
+[; <" LATE equ 0F8Dh ;# ">
+"2034
+[; <" TRISA equ 0F92h ;# ">
+"2039
+[; <" DDRA equ 0F92h ;# ">
+"2256
+[; <" TRISB equ 0F93h ;# ">
+"2261
+[; <" DDRB equ 0F93h ;# ">
+"2478
+[; <" TRISC equ 0F94h ;# ">
+"2483
+[; <" DDRC equ 0F94h ;# ">
+"2700
+[; <" TRISD equ 0F95h ;# ">
+"2705
+[; <" DDRD equ 0F95h ;# ">
+"2922
+[; <" TRISE equ 0F96h ;# ">
+"2927
+[; <" DDRE equ 0F96h ;# ">
+"3074
+[; <" OSCTUNE equ 0F9Bh ;# ">
+"3144
+[; <" PIE1 equ 0F9Dh ;# ">
+"3221
+[; <" PIR1 equ 0F9Eh ;# ">
+"3298
+[; <" IPR1 equ 0F9Fh ;# ">
+"3375
+[; <" PIE2 equ 0FA0h ;# ">
+"3455
+[; <" PIR2 equ 0FA1h ;# ">
+"3535
+[; <" IPR2 equ 0FA2h ;# ">
+"3615
+[; <" EECON1 equ 0FA6h ;# ">
+"3681
+[; <" EECON2 equ 0FA7h ;# ">
+"3688
+[; <" EEDATA equ 0FA8h ;# ">
+"3695
+[; <" EEADR equ 0FA9h ;# ">
+"3757
+[; <" EEADRH equ 0FAAh ;# ">
+"3783
+[; <" RCSTA equ 0FABh ;# ">
+"3788
+[; <" RCSTA1 equ 0FABh ;# ">
+"3993
+[; <" TXSTA equ 0FACh ;# ">
+"3998
+[; <" TXSTA1 equ 0FACh ;# ">
+"4249
+[; <" TXREG equ 0FADh ;# ">
+"4254
+[; <" TXREG1 equ 0FADh ;# ">
+"4261
+[; <" RCREG equ 0FAEh ;# ">
+"4266
+[; <" RCREG1 equ 0FAEh ;# ">
+"4273
+[; <" SPBRG equ 0FAFh ;# ">
+"4278
+[; <" SPBRG1 equ 0FAFh ;# ">
+"4285
+[; <" SPBRGH equ 0FB0h ;# ">
+"4292
+[; <" T3CON equ 0FB1h ;# ">
+"4404
+[; <" TMR3 equ 0FB2h ;# ">
+"4411
+[; <" TMR3L equ 0FB2h ;# ">
+"4418
+[; <" TMR3H equ 0FB3h ;# ">
+"4425
+[; <" CVRCON2 equ 0FB4h ;# ">
+"4452
+[; <" CVRCON equ 0FB5h ;# ">
+"4531
+[; <" ECCP1AS equ 0FB6h ;# ">
+"4613
+[; <" PWM1CON equ 0FB7h ;# ">
+"4683
+[; <" BAUDCON equ 0FB8h ;# ">
+"4688
+[; <" BAUDCTL equ 0FB8h ;# ">
+"4849
+[; <" PSTRCON equ 0FB9h ;# ">
+"4893
+[; <" CCP2CON equ 0FBAh ;# ">
+"4957
+[; <" CCPR2 equ 0FBBh ;# ">
+"4964
+[; <" CCPR2L equ 0FBBh ;# ">
+"4971
+[; <" CCPR2H equ 0FBCh ;# ">
+"4978
+[; <" CCP1CON equ 0FBDh ;# ">
+"5060
+[; <" CCPR1 equ 0FBEh ;# ">
+"5067
+[; <" CCPR1L equ 0FBEh ;# ">
+"5074
+[; <" CCPR1H equ 0FBFh ;# ">
+"5081
+[; <" ADCON2 equ 0FC0h ;# ">
+"5152
+[; <" ADCON1 equ 0FC1h ;# ">
+"5203
+[; <" ADCON0 equ 0FC2h ;# ">
+"5322
+[; <" ADRES equ 0FC3h ;# ">
+"5329
+[; <" ADRESL equ 0FC3h ;# ">
+"5336
+[; <" ADRESH equ 0FC4h ;# ">
+"5343
+[; <" SSPCON2 equ 0FC5h ;# ">
+"5405
+[; <" SSPCON1 equ 0FC6h ;# ">
+"5475
+[; <" SSPSTAT equ 0FC7h ;# ">
+"5700
+[; <" SSPADD equ 0FC8h ;# ">
+"5707
+[; <" SSPBUF equ 0FC9h ;# ">
+"5714
+[; <" T2CON equ 0FCAh ;# ">
+"5785
+[; <" PR2 equ 0FCBh ;# ">
+"5790
+[; <" MEMCON equ 0FCBh ;# ">
+"5895
+[; <" TMR2 equ 0FCCh ;# ">
+"5902
+[; <" T1CON equ 0FCDh ;# ">
+"6005
+[; <" TMR1 equ 0FCEh ;# ">
+"6012
+[; <" TMR1L equ 0FCEh ;# ">
+"6019
+[; <" TMR1H equ 0FCFh ;# ">
+"6026
+[; <" RCON equ 0FD0h ;# ">
+"6159
+[; <" WDTCON equ 0FD1h ;# ">
+"6187
+[; <" HLVDCON equ 0FD2h ;# ">
+"6192
+[; <" LVDCON equ 0FD2h ;# ">
+"6457
+[; <" OSCCON equ 0FD3h ;# ">
+"6534
+[; <" T0CON equ 0FD5h ;# ">
+"6604
+[; <" TMR0 equ 0FD6h ;# ">
+"6611
+[; <" TMR0L equ 0FD6h ;# ">
+"6618
+[; <" TMR0H equ 0FD7h ;# ">
+"6625
+[; <" STATUS equ 0FD8h ;# ">
+"6696
+[; <" FSR2 equ 0FD9h ;# ">
+"6703
+[; <" FSR2L equ 0FD9h ;# ">
+"6710
+[; <" FSR2H equ 0FDAh ;# ">
+"6717
+[; <" PLUSW2 equ 0FDBh ;# ">
+"6724
+[; <" PREINC2 equ 0FDCh ;# ">
+"6731
+[; <" POSTDEC2 equ 0FDDh ;# ">
+"6738
+[; <" POSTINC2 equ 0FDEh ;# ">
+"6745
+[; <" INDF2 equ 0FDFh ;# ">
+"6752
+[; <" BSR equ 0FE0h ;# ">
+"6759
+[; <" FSR1 equ 0FE1h ;# ">
+"6766
+[; <" FSR1L equ 0FE1h ;# ">
+"6773
+[; <" FSR1H equ 0FE2h ;# ">
+"6780
+[; <" PLUSW1 equ 0FE3h ;# ">
+"6787
+[; <" PREINC1 equ 0FE4h ;# ">
+"6794
+[; <" POSTDEC1 equ 0FE5h ;# ">
+"6801
+[; <" POSTINC1 equ 0FE6h ;# ">
+"6808
+[; <" INDF1 equ 0FE7h ;# ">
+"6815
+[; <" WREG equ 0FE8h ;# ">
+"6827
+[; <" FSR0 equ 0FE9h ;# ">
+"6834
+[; <" FSR0L equ 0FE9h ;# ">
+"6841
+[; <" FSR0H equ 0FEAh ;# ">
+"6848
+[; <" PLUSW0 equ 0FEBh ;# ">
+"6855
+[; <" PREINC0 equ 0FECh ;# ">
+"6862
+[; <" POSTDEC0 equ 0FEDh ;# ">
+"6869
+[; <" POSTINC0 equ 0FEEh ;# ">
+"6876
+[; <" INDF0 equ 0FEFh ;# ">
+"6883
+[; <" INTCON3 equ 0FF0h ;# ">
+"6975
+[; <" INTCON2 equ 0FF1h ;# ">
+"7045
+[; <" INTCON equ 0FF2h ;# ">
+"7162
+[; <" PROD equ 0FF3h ;# ">
+"7169
+[; <" PRODL equ 0FF3h ;# ">
+"7176
+[; <" PRODH equ 0FF4h ;# ">
+"7183
+[; <" TABLAT equ 0FF5h ;# ">
+"7192
+[; <" TBLPTR equ 0FF6h ;# ">
+"7199
+[; <" TBLPTRL equ 0FF6h ;# ">
+"7206
+[; <" TBLPTRH equ 0FF7h ;# ">
+"7213
+[; <" TBLPTRU equ 0FF8h ;# ">
+"7222
+[; <" PCLAT equ 0FF9h ;# ">
+"7229
+[; <" PC equ 0FF9h ;# ">
+"7236
+[; <" PCL equ 0FF9h ;# ">
+"7243
+[; <" PCLATH equ 0FFAh ;# ">
+"7250
+[; <" PCLATU equ 0FFBh ;# ">
+"7257
+[; <" STKPTR equ 0FFCh ;# ">
+"7331
+[; <" TOS equ 0FFDh ;# ">
+"7338
+[; <" TOSL equ 0FFDh ;# ">
+"7345
+[; <" TOSH equ 0FFEh ;# ">
+"7352
+[; <" TOSU equ 0FFFh ;# ">
+"11 application.c
+[; ;application.c: 11: led_t led1 = {.port_name = PORTC_INDEX, .pin = PIN0, .led_status = LED_OFF};
+[v _led1 `S305 ~T0 @X0 1 e ]
+[i _led1
+:U ..
+:U ..
+-> . `E3027 2 `uc
+-> . `E3017 0 `uc
+-> . `E3069 0 `uc
+..
+..
+]
+"12
+[; ;application.c: 12: led_t led2 = {.port_name = PORTC_INDEX, .pin = PIN1, .led_status = LED_OFF};
+[v _led2 `S305 ~T0 @X0 1 e ]
+[i _led2
+:U ..
+:U ..
+-> . `E3027 2 `uc
+-> . `E3017 1 `uc
+-> . `E3069 0 `uc
+..
+..
+]
+"13
+[; ;application.c: 13: led_t led3 = {.port_name = PORTC_INDEX, .pin = PIN2, .led_status = LED_OFF};
+[v _led3 `S305 ~T0 @X0 1 e ]
+[i _led3
+:U ..
+:U ..
+-> . `E3027 2 `uc
+-> . `E3017 2 `uc
+-> . `E3069 0 `uc
+..
+..
+]
+"15
+[; ;application.c: 15: button_t btn2 = {.port_name = PORTD_INDEX, .pin = PIN1, .button_status = BUTTON_NOT_PRESSED};
+[v _btn2 `S306 ~T0 @X0 1 e ]
+[i _btn2
+:U ..
+:U ..
+-> . `E3027 3 `uc
+-> . `E3017 1 `uc
+-> . `E3086 0 `uc
+..
+..
+]
+"16
+[; ;application.c: 16: uint8_t btn2_status = 0;
+[v _btn2_status `uc ~T0 @X0 1 e ]
+[i _btn2_status
+-> -> 0 `i `uc
+]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"19
+[; ;application.c: 19: int main() {
+[v _main `(i ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"21
+[; ;application.c: 21:     uint8_t counter =0;
+[v _counter `uc ~T0 @X0 1 a ]
+[e = _counter -> -> 0 `i `uc ]
+"22
+[; ;application.c: 22:     led_initialize(&led1);
+[e ( _led_initialize (1 &U _led1 ]
+"23
+[; ;application.c: 23:     led_initialize(&led2);
+[e ( _led_initialize (1 &U _led2 ]
+"24
+[; ;application.c: 24:     led_initialize(&led3);
+[e ( _led_initialize (1 &U _led3 ]
+"25
+[; ;application.c: 25:     button_initialize(&btn2);
+[e ( _button_initialize (1 &U _btn2 ]
+"27
+[; ;application.c: 27:     while(1){
+[e :U 309 ]
+{
+"29
+[; ;application.c: 29:         button_get_status(&btn2, &btn2_status);
+[e ( _button_get_status (2 , &U _btn2 -> &U _btn2_status `*E3086 ]
+"31
+[; ;application.c: 31:         if(btn2_status == BUTTON_PRESSED){
+[e $ ! == -> _btn2_status `i -> . `E3086 1 `i 311  ]
+{
+"32
+[; ;application.c: 32:             if(counter == 0 ){
+[e $ ! == -> _counter `i -> 0 `i 312  ]
+{
+"33
+[; ;application.c: 33:                 led_turn_on(&led1);
+[e ( _led_turn_on (1 &U _led1 ]
+"34
+[; ;application.c: 34:                 _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"35
+[; ;application.c: 35:                 led_turn_off((&led1));
+[e ( _led_turn_off (1 &U _led1 ]
+"36
+[; ;application.c: 36:                 counter = counter++;
+[e = _counter ++ _counter -> -> 1 `i `uc ]
+"37
+[; ;application.c: 37:             }
+}
+[e $U 313  ]
+"38
+[; ;application.c: 38:             else if(counter == 1){
+[e :U 312 ]
+[e $ ! == -> _counter `i -> 1 `i 314  ]
+{
+"39
+[; ;application.c: 39:                 led_turn_on(&led2);
+[e ( _led_turn_on (1 &U _led2 ]
+"40
+[; ;application.c: 40:                  _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"41
+[; ;application.c: 41:                  led_turn_off((&led2));
+[e ( _led_turn_off (1 &U _led2 ]
+"42
+[; ;application.c: 42:                 _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"43
+[; ;application.c: 43:                 led_turn_on(&led2);
+[e ( _led_turn_on (1 &U _led2 ]
+"44
+[; ;application.c: 44:                 _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"45
+[; ;application.c: 45:                 led_turn_off((&led2));
+[e ( _led_turn_off (1 &U _led2 ]
+"46
+[; ;application.c: 46:                 counter = counter++;
+[e = _counter ++ _counter -> -> 1 `i `uc ]
+"47
+[; ;application.c: 47:             }
+}
+[e $U 315  ]
+"48
+[; ;application.c: 48:             else if(counter == 2){
+[e :U 314 ]
+[e $ ! == -> _counter `i -> 2 `i 316  ]
+{
+"49
+[; ;application.c: 49:                 led_turn_on(&led3);
+[e ( _led_turn_on (1 &U _led3 ]
+"50
+[; ;application.c: 50:                     _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"51
+[; ;application.c: 51:                     led_turn_off((&led3));
+[e ( _led_turn_off (1 &U _led3 ]
+"52
+[; ;application.c: 52:                     _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"53
+[; ;application.c: 53:                     led_turn_on(&led3);
+[e ( _led_turn_on (1 &U _led3 ]
+"54
+[; ;application.c: 54:                     _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"55
+[; ;application.c: 55:                     led_turn_off((&led3));
+[e ( _led_turn_off (1 &U _led3 ]
+"56
+[; ;application.c: 56:                     _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"57
+[; ;application.c: 57:                     led_turn_on(&led3);
+[e ( _led_turn_on (1 &U _led3 ]
+"58
+[; ;application.c: 58:                     _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"59
+[; ;application.c: 59:                     led_turn_off((&led3));
+[e ( _led_turn_off (1 &U _led3 ]
+"60
+[; ;application.c: 60:                     counter = counter++;
+[e = _counter ++ _counter -> -> 1 `i `uc ]
+"61
+[; ;application.c: 61:             }
+}
+[e $U 317  ]
+"62
+[; ;application.c: 62:             else if(counter == 3){
+[e :U 316 ]
+[e $ ! == -> _counter `i -> 3 `i 318  ]
+{
+"63
+[; ;application.c: 63:                 led_turn_on(&led1);
+[e ( _led_turn_on (1 &U _led1 ]
+"64
+[; ;application.c: 64:                 led_turn_on(&led2);
+[e ( _led_turn_on (1 &U _led2 ]
+"65
+[; ;application.c: 65:                 led_turn_on(&led3);
+[e ( _led_turn_on (1 &U _led3 ]
+"66
+[; ;application.c: 66:                 _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"67
+[; ;application.c: 67:                 counter =counter++;
+[e = _counter ++ _counter -> -> 1 `i `uc ]
+"68
+[; ;application.c: 68:             }
+}
+[e $U 319  ]
+"69
+[; ;application.c: 69:             else{
+[e :U 318 ]
+{
+"70
+[; ;application.c: 70:                 led_turn_off(&led1);
+[e ( _led_turn_off (1 &U _led1 ]
+"71
+[; ;application.c: 71:                 led_turn_off(&led2);
+[e ( _led_turn_off (1 &U _led2 ]
+"72
+[; ;application.c: 72:                 led_turn_off(&led3);
+[e ( _led_turn_off (1 &U _led3 ]
+"73
+[; ;application.c: 73:                 _delay((unsigned long)((700)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 700 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"74
+[; ;application.c: 74:                 counter = 0;
+[e = _counter -> -> 0 `i `uc ]
+"76
+[; ;application.c: 76:             }
+}
+[e :U 319 ]
+[e :U 317 ]
+[e :U 315 ]
+[e :U 313 ]
+"77
+[; ;application.c: 77:         }
+}
+[e $U 320  ]
+"78
+[; ;application.c: 78:         else { }
+[e :U 311 ]
+{
+}
+[e :U 320 ]
+"79
+[; ;application.c: 79:     }
+}
+[e :U 308 ]
+[e $U 309  ]
+[e :U 310 ]
+"81
+[; ;application.c: 81:     return (0);
+[e ) -> 0 `i ]
+[e $UE 307  ]
+"82
+[; ;application.c: 82: }
+[e :UE 307 ]
+}
